@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="ksmybatis.admin.products.mapper.ProductsMapper">
+  		<!-- resultMap : mybatis 결과데이터를 DTO 객체데이터를 DTO의 필드와 매핑설정 -->  
+  		<resultMap type="products" id="productsResultMap">
+  		<id 	column="prod_cd" 		property="productCode" />
+  		<result column="vend_cd" 		property="vendorCode" />
+  		<result column="prod_name" 		property="productName" />
+  		<result column="prod_untprc" 	property="productUnitPrice" />
+  		<result column="prod_reg_date" 	property="productRegDate" />
+  		</resultMap>
+  			
+<!--   		<insert id="addProduct" parameterType="products">
+  			INSERT INTO 
+			products
+			(prod_cd, vend_cd, prod_name, prod_untprc, prod_reg_date)
+			values
+			('', '', '', 0, '');
+  		</insert> -->
+  		
+  	<delete id="removeProductsBySellerId" parameterType="String">
+  		/* 판매자가 등록한 상품 삭제 */
+		delete
+			p
+		from 
+			vendors v inner join products p 
+			using (vend_cd)
+		where
+			v.vend_mbr_id  = #{sellerId};
+  	</delete>	
+  	<select id="getProductList" resultMap="productsResultMap">
+  		/* 상품목록조회 */
+		SELECT 
+			prod_cd, 
+			vend_cd, 
+			prod_name, 
+			prod_untprc, 
+			prod_reg_date
+		FROM 
+			products
+		order by cast(SUBSTRING_INDEX(prod_cd, 'prod_', -1) as unsigned);
+  	</select>
+  </mapper>

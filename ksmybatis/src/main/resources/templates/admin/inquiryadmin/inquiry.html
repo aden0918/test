@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout/layout_main}">
+		
+	 <head>
+	 	<meta name="description" content="한국스마트정보교육원 팀프로젝트" />	
+	 </head>
+	 <!--/* 개발시 추가할 jsfile 영역 정의 */-->
+	 <th:block layout:fragment="jsFile">
+	 	<script src="/manage/assets/js/vendors/chart.js"></script>
+	 </th:block>
+	 
+	 <!--/* 개발시 추가할 스크립트 */-->
+	 <th:block layout:fragment="jsScript">
+	 	<script>
+
+	 	</script>
+	 </th:block>
+	 <!-- 추가할 페이지 contents -->
+	 <th:block layout:fragment="contents">
+	 	
+	 </th:block>	
+</html>

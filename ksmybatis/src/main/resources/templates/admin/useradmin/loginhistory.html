@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>관리자페이지 로그인이력</title>
+    
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* ---------------------------------------------------
+            공통 스타일 (모든 페이지에 동일하게 적용)
+        ----------------------------------------------------- */
+        :root {
+            --primary-color: #4A6CFF; 
+            --sidebar-width: 280px;
+        }
+        body { 
+        background-color: #F4F7FA; 
+        }
+        .page-wrapper { 
+        display: flex; 
+        }
+        .sidebar { 
+        width: var(--sidebar-width); 
+        min-width: var(--sidebar-width); 
+        background-color: #FFFFFF; 
+        min-height: 100vh; 
+        padding: 1.5rem 1rem; 
+        border-right: 1px solid #e9ecef; 
+        }
+        .sidebar .logo { 
+        font-size: 1.8rem; 
+        font-weight: 800; 
+        color: #333; 
+        text-decoration: none; 
+        margin-bottom: 2rem; 
+        padding-left: 0.5rem; 
+        }
+        .sidebar .nav-pills .nav-link { 
+        color: #5a6a85; 
+        font-weight: 500; 
+        padding: 0.75rem 1rem; 
+        display: flex; 
+        align-items: center; 
+        border-radius: 0.5rem; 
+        }
+        .sidebar .nav-pills .nav-link .fas { 
+        width: 24px; 
+        margin-right: 1rem; 
+        font-size: 1.1rem; 
+        text-align: center; 
+        }
+        .sidebar .nav-pills .nav-link:not(.active):hover { 
+        background-color: #f8f9fa; 
+        }
+        .sidebar .nav-pills .nav-link.active { 
+        background-color: var(--primary-color); 
+        color: white; 
+        }
+        .sub-menu .nav-link { 
+        padding-left: 3.5rem; 
+        font-size: 0.9rem; 
+        background-color: #F4F7FA; 
+        margin-top: 4px; 
+        }
+        .sub-menu .nav-link.active { 
+        background-color: var(--primary-color); 
+        color: white; 
+        }
+        /* 메인 콘텐츠 스타일 */
+        .main-content { 
+        width: calc(100% - var(--sidebar-width)); 
+        padding: 2.5rem; 
+        }
+        .card { 
+        border: none; 
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05); 
+        border-radius: 0.75rem; 
+        }
+        .filter-table th { 
+        width: 120px; 
+        background-color: #f7f9fc; 
+        font-weight: 600; 
+        vertical-align: middle; 
+        }
+        .table thead th { 
+        background-color: #F8F9FC; 
+        font-weight: 600; color: #858796; 
+        font-size: 0.85rem; 
+        text-align: center; 
+        vertical-align: middle; 
+        }
+        .table td { 
+        text-align: center; 
+        vertical-align: middle; 
+        }
+        .table .form-check { 
+        display: inline-block; 
+        }
+        .pagination .page-item.active .page-link { 
+        background-color: var(--primary-color); 
+        border-color: var(--primary-color); 
+        }	
+        input[type=checkbox], input[type=radio] {
+		    box-sizing: border-box;
+		    padding: 0;
+		    bottom: 50%;
+		}
+
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <a href="#" class="logo">NULLPICK</a>
+
+        <ul class="nav nav-pills flex-column">
+        	<!-- 총관리자 메뉴 -->
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#menu-superadmin" role="button" aria-expanded="true">
+                    <i class="fas fa-user-shield"></i> 총관리자
+                </a>
+                <div class="collapse" id="menu-superadmin">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" href="adminpage.html">권한</a></li>
+                    </ul>
+                </div>
+            </li>
+            <!-- 김성주 메뉴 -->
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#menu-sungju" role="button" aria-expanded="true">
+                    <i class="fas fa-user-shield"></i> 김성주
+                </a>
+                <div class="collapse show" id="menu-sungju">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" href="memberList.html">회원조회</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="loginhistory.html">로그인이력</a></li>
+                    </ul>
+                </div>
+            </li>
+            
+            <!-- 정성훈 메뉴 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#menu-seonghun" role="button" aria-expanded="false">
+                    <i class="fas fa-box-open"></i> 정성훈
+                </a>
+                <div class="collapse" id="menu-seonghun">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" href="productregistration.html">상품등록</a></li>
+                        <li class="nav-item"><a class="nav-link" href="productapprovalrejectioncriteria.html">상품승인반려기준관리</a></li>
+                        <li class="nav-item"><a class="nav-link" href="productcategory.html">상품카테고리관리</a></li>
+                        <li class="nav-item"><a class="nav-link" href="productoption.html">상품옵션관리</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- 서요셉 메뉴 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#menu-yoseb" role="button" aria-expanded="false">
+                    <i class="fas fa-clipboard-list"></i> 서요셉
+                </a>
+                <div class="collapse" id="menu-yoseb">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" href="board.html">게시판관리</a></li>
+                    </ul>
+                </div>
+            </li>
+            
+            <!-- 이건영 메뉴 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#menu-gunyoung" role="button" aria-expanded="false">
+                    <i class="fas fa-calculator"></i> 이건영
+                </a>
+                <div class="collapse" id="menu-gunyoung">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" href="settlementdetails.html">정산내역</a></li>
+                    </ul>
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" href="paymentdetails.html">결제내역</a></li>
+                    </ul>
+                </div>
+            </li>
+            
+            <!-- 이지성 메뉴 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#menu-jisung" role="button" aria-expanded="false">
+                    <i class="fas fa-store"></i> 이지성
+                </a>
+                <div class="collapse" id="menu-jisung">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" href="store.html">스토어</a></li>
+                        <li class="nav-item"><a class="nav-link" href="storestatus.html">스토어상태</a></li>
+                        <li class="nav-item"><a class="nav-link" href="inquiry.html">문의관리</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- 염가은 메뉴 -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#menu-gaeun" role="button" aria-expanded="false">
+                    <i class="fas fa-ticket-alt"></i> 염가은
+                </a>
+                <div class="collapse" id="menu-gaeun">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"><a class="nav-link" href="coupon.html">쿠폰관리</a></li>
+                        <li class="nav-item"><a class="nav-link" href="search.html">검색기록</a></li>
+                        <li class="nav-item"><a class="nav-link" href="declaration.html">신고관리</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </aside>
+    <main class="main-content">
+	    <h1 class="h3 mb-4 font-weight-bold">로그인 기록</h1>
+	
+	    <!-- 검색 필터 카드 (기존과 동일) -->
+	    <div class="card mb-4">
+	        <div class="card-body">
+	            <table class="table table-bordered filter-table">
+	                <tbody>
+	                    <tr>
+	                        <th>기간</th>
+	                        <td>
+	                            <div class="form-row align-items-center">
+	                                <div class="col-auto">
+	                                    <input type="date" class="form-control form-control-sm" value="2025-03-16">
+	                                </div>
+	                                <div class="col-auto">-</div>
+	                                <div class="col-auto">
+	                                    <input type="date" class="form-control form-control-sm" value="2025-06-16">
+	                                </div>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <th>검색 키워드</th>
+	                        <td>
+	                            <div class="input-group">
+	                                <div class="input-group-prepend">
+	                                    <select class="custom-select custom-select-sm" style="width: 150px;">
+	                                        <option selected>전체</option>
+	                                        <option value="1">ID</option>
+	                                        <option value="2">이름</option>
+	                                        <option value="3">성공</option>
+	                                        <option value="4">실패</option>
+	                                        <option value="5">IP</option>
+	                                    </select>
+	                                </div>
+	                                <input type="text" class="form-control form-control-sm">
+	                            </div>
+	                        </td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	            <div class="text-center mt-3">
+	                <button class="btn btn-dark" style="width: 120px;">검색</button>
+	            </div>
+	        </div>
+	    </div>
+
+    <!-- 회원 목록 테이블 카드 -->
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <span class="font-weight-bold">[ 검색 결과 <span class="text-primary">183</span>건 ]</span>
+                </div>
+                <div class="d-flex">	
+                    <select class="custom-select custom-select-sm" style="width: 120px;">
+                        <option value="1">15개씩 보기</option>
+                        <option selected>30개씩 보기</option>
+                        <option value="2">50개씩 보기</option>
+                        <option value="3">100개씩 보기</option>
+                    </select>
+                </div>
+            </div>
+
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>이름</th>
+                        <th>로그인 시간</th>
+                        <th>로그인 성공여부</th>
+                        <th>접속 IP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>nmzxcbhasd1</td>
+                        <td>김성주</td>
+                        <td>2025-05-17</td>
+                        <td>실패</td>
+                        <td>215.841.124.257</td>
+                    </tr>
+                    <tr>
+                        <td>vbysdf1</td>
+                        <td>정성훈</td>
+                        <td>2025-05-17</td>
+                        <td>성공</td>
+                        <td>215.841.124.253</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <nav class="d-flex justify-content-center mt-4" aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</main>
+    
+</div>
+    
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
